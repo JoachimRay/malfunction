@@ -8,6 +8,7 @@ const barlow = Barlow({ subsets: ["latin"], weight: ["400", "500", "600", "700"]
 export const metadata: Metadata = {
   title: "MALFUNCTION 2026 Hackathon | iDE.A",
   description: "MALFUNCTION 2026 hackathon on 21 November at i-Academy, Filinvest Cebu Cyberzone Tower 2. Register your team.",
+  icons: { icon: "/idea-logo.png" },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

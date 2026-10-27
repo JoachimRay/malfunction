@@ -1,13 +1,15 @@
 import { SCHEDULE } from "@/lib/event";
+import Reveal from "./Reveal";
 
 export default function Schedule() {
   return (
     <section id="schedule" className="schedule">
       <div className="wrap section">
-        <div className="stack">
+        <Reveal className="stack">
           <p className="eyebrow">02 / Schedule</p>
           <h2 className="h2">Run of show</h2>
-        </div>
+        </Reveal>
+        <Reveal delay={0.1}>
         <ol className="rows list-reset">
           {SCHEDULE.map((s, i) => (
             <li key={i} className="rows__item">
@@ -16,6 +18,7 @@ export default function Schedule() {
             </li>
           ))}
         </ol>
+        </Reveal>
       </div>
     </section>
   );

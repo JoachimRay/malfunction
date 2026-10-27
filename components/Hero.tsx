@@ -1,17 +1,20 @@
 import Image from "next/image";
 import { EVENT } from "@/lib/event";
+import Reveal from "./Reveal";
 
 export default function Hero() {
   return (
     <section id="top" className="wrap hero">
-      <p className="eyebrow">{EVENT.type}</p>
+      <Reveal className="eyebrow">{EVENT.type}</Reveal>
+      <Reveal delay={0.06}>
       <h1 className="hero__title">
         {EVENT.name}
         <br />
         {EVENT.year}
       </h1>
+      </Reveal>
       <div className="dimension" aria-hidden="true" />
-      <div className="hero__row">
+      <Reveal className="hero__row" delay={0.12}>
         <div className="hero__copy">
           <p className="hero__date">{EVENT.dateShort}</p>
           <p className="hero__venue">
@@ -33,7 +36,7 @@ export default function Hero() {
           className="hero__poster"
           priority
         />
-      </div>
+      </Reveal>
     </section>
   );
 }

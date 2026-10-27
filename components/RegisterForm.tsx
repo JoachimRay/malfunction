@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { TEAM_SIZE } from "@/lib/event";
 
 type Member = { id: number; name: string; email: string };
@@ -15,6 +16,7 @@ export default function RegisterForm() {
   const [nextId, setNextId] = useState(minRows + 1);
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
+  const reduceMotion = useReducedMotion();
 
   const addMember = () => {
     if (members.length < maxRows) {
@@ -66,7 +68,14 @@ export default function RegisterForm() {
   }
 
   return (
-    <form className="form" onSubmit={handleSubmit}>
+    <motion.form
+      className="form"
+      onSubmit={handleSubmit}
+      initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: false, amount: 0.15 }}
+      transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+    >
       <h3 className="form__sub">Team</h3>
       <div className="form__pair">
         <Field id="team_name" label="Team name" required />
@@ -78,35 +87,45 @@ export default function RegisterForm() {
       <Field id="leader_email" label="Email" type="email" autoComplete="email" required />
 
       <h3 className="form__sub">Team members</h3>
+      <AnimatePresence initial={false} mode="popLayout">
       {members.map((member, index) => (
-        <fieldset key={member.id} className="member">
+        <motion.fieldset
+          key={member.id}
+          className="member"
+          layout
+          initial={reduceMotion ? false : { opacity: 0, height: 0, y: 12 }}
+          animate={{ opacity: 1, height: "auto", y: 0 }}
+          exit={reduceMotion ? undefined : { opacity: 0, height: 0, y: -8, marginBottom: 0, paddingTop: 0, paddingBottom: 0 }}
+          transition={{ duration: 0.22, ease: "easeOut" }}
+        >
           <legend className="member__legend">Member {index + 2}</legend>
           <div className="form__pair">
             <div className="field">
               <label htmlFor={`member-${member.id}-name`}>Full name</label>
-              <input id={`member-${member.id}-name`} value={member.name} required onChange={(e) => updateMember(member.id, "name", e.target.value)} />
+              <motion.input id={`member-${member.id}-name`} value={member.name} required onChange={(e) => updateMember(member.id, "name", e.target.value)} whileFocus={reduceMotion ? undefined : { scale: 1.015, borderColor: "#fff" }} transition={{ type: "spring", stiffness: 360, damping: 24 }} />
             </div>
             <div className="field">
               <label htmlFor={`member-${member.id}-email`}>Email</label>
-              <input id={`member-${member.id}-email`} type="email" value={member.email} required onChange={(e) => updateMember(member.id, "email", e.target.value)} />
+              <motion.input id={`member-${member.id}-email`} type="email" value={member.email} required onChange={(e) => updateMember(member.id, "email", e.target.value)} whileFocus={reduceMotion ? undefined : { scale: 1.015, borderColor: "#fff" }} transition={{ type: "spring", stiffness: 360, damping: 24 }} />
             </div>
           </div>
           {members.length > minRows && (
-            <button type="button" className="btn btn--outline btn--sm" onClick={() => removeMember(member.id)}>
+            <motion.button type="button" className="btn btn--outline btn--sm" onClick={() => removeMember(member.id)} whileHover={reduceMotion ? undefined : { y: -2 }} whileTap={reduceMotion ? undefined : { scale: 0.97 }}>
               Remove member {index + 2}
-            </button>
+            </motion.button>
           )}
-        </fieldset>
+        </motion.fieldset>
       ))}
+      </AnimatePresence>
       {members.length < maxRows && (
-        <button type="button" className="btn btn--outline" onClick={addMember}>+ Add another member</button>
+        <motion.button type="button" className="btn btn--outline" onClick={addMember} whileHover={reduceMotion ? undefined : { y: -2 }} whileTap={reduceMotion ? undefined : { scale: 0.97 }}>+ Add another member</motion.button>
       )}
       <p className="form__hint">Teams have {TEAM_SIZE.min} to {TEAM_SIZE.max} members, including the leader.</p>
 
       <h3 className="form__sub">Project</h3>
       <div className="field">
         <label htmlFor="project_idea">What do you plan to build?</label>
-        <textarea id="project_idea" name="project_idea" required rows={4} />
+        <motion.textarea id="project_idea" name="project_idea" required rows={4} whileFocus={reduceMotion ? undefined : { scale: 1.01, borderColor: "#fff" }} transition={{ type: "spring", stiffness: 360, damping: 24 }} />
       </div>
       <Field id="mentor_name" label="Mentor or adviser (optional)" placeholder="Name and email" />
 
@@ -119,21 +138,25 @@ export default function RegisterForm() {
         <label htmlFor="consent">I agree to the event rules and data privacy notice on behalf of my team.</label>
       </div>
 
-      <button type="submit" className="btn btn--solid" disabled={status === "submitting"}>
+      <motion.button type="submit" className="btn btn--solid" disabled={status === "submitting"} whileHover={reduceMotion ? undefined : { y: -2 }} whileTap={reduceMotion ? undefined : { scale: 0.98 }}>
         {status === "submitting" ? "Submitting..." : "Submit registration"}
-      </button>
-      <p role="status" aria-live="polite" className={`form__msg form__msg--${status}`}>{message}</p>
-    </form>
+      </motion.button>
+      <AnimatePresence mode="wait" initial={false}>
+        {message && <motion.p key={status} role="status" aria-live="polite" className={`form__msg form__msg--${status}`} initial={reduceMotion ? false : { opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={reduceMotion ? undefined : { opacity: 0, y: -4 }} transition={{ duration: 0.2 }}>{message}</motion.p>}
+      </AnimatePresence>
+    </motion.form>
   );
 }
 
 function Field({ id, label, type = "text", placeholder, required, autoComplete }: {
   id: string; label: string; type?: string; placeholder?: string; required?: boolean; autoComplete?: string;
 }) {
+  const reduceMotion = useReducedMotion();
+
   return (
     <div className="field">
       <label htmlFor={id}>{label}</label>
-      <input id={id} name={id} type={type} placeholder={placeholder} required={required} autoComplete={autoComplete} />
+      <motion.input id={id} name={id} type={type} placeholder={placeholder} required={required} autoComplete={autoComplete} whileFocus={reduceMotion ? undefined : { scale: 1.015, borderColor: "#fff" }} transition={{ type: "spring", stiffness: 360, damping: 24 }} />
     </div>
   );
 }
