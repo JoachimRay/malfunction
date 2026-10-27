@@ -1,13 +1,23 @@
-import Image from "next/image";
-import RegistrationForm from "@/app/components/registration_form";
+import Header from "@/components/Header";
+import Hero from "@/components/Hero";
+import InfoStrip from "@/components/InfoStrip";
+import About from "@/components/About";
+import Schedule from "@/components/Schedule";
+import Register from "@/components/Register";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-       
-    <RegistrationForm />
+    <>
+      <Header />
+      <main>
+        <Hero />
+        <InfoStrip />
+        <About />
+        <Schedule />
+        <Register />
       </main>
-    </div>
+      <Footer />
+    </>
   );
 }

@@ -1,48 +1,43 @@
 import { NextResponse } from "next/server";
+import { TEAM_SIZE } from "@/lib/event";
 
-const SCRIPT_URL = process.env.NEXT_PUBLIC_SCRIPT_URL;
+const emailOk = (v: unknown) => typeof v === "string" && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+const textOk = (v: unknown) => typeof v === "string" && v.trim().length > 0 && v.length < 200;
 
-export async function POST(request: Request) {
+export async function POST(req: Request) {
+  const body = await req.json().catch(() => null);
+  if (!body || typeof body !== "object" || Array.isArray(body)) {
+    return NextResponse.json({ error: "Invalid request." }, { status: 400 });
+  }
+
+  // Honeypot: pretend success so bots do not retry
+  if (body.website) return NextResponse.json({ ok: true });
+
+  const members = Array.isArray(body.members) ? body.members : [];
+  const total = members.length + 1;
+  const valid =
+    textOk(body.team?.name) && textOk(body.team?.organization) &&
+    textOk(body.leader?.name) && emailOk(body.leader?.email) && textOk(body.leader?.phone) &&
+    members.every((m: { name?: unknown; email?: unknown }) => textOk(m.name) && emailOk(m.email)) &&
+    total >= TEAM_SIZE.min && total <= TEAM_SIZE.max &&
+    body.consent === true;
+  if (!valid) return NextResponse.json({ error: "Please complete all required fields." }, { status: 400 });
+
+  const url = process.env.GOOGLE_SCRIPT_URL;
+  if (!url) return NextResponse.json({ error: "Registration is not set up yet." }, { status: 500 });
+
   try {
-    if (!SCRIPT_URL) {
-      throw new Error("Missing Google Apps Script URL");
-    }
-
-    const formData = await request.formData();
-    formData.set("registration_type", "solo");
-
-    const params = new URLSearchParams();
-    for (const [key, value] of formData.entries()) {
-      params.append(key, typeof value === "string" ? value : value.name);
-    }
-
-    const scriptResponse = await fetch(SCRIPT_URL, {
+    const res = await fetch(url, {
       method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
-      body: params,
-      cache: "no-store",
+      headers: { "Content-Type": "text/plain;charset=utf-8" }, // avoids a CORS preflight on Apps Script
+      body: JSON.stringify(body),
+      redirect: "follow",
     });
-    const responseText = (await scriptResponse.text()).trim();
-    const returnedHtml = /text\/html/i.test(scriptResponse.headers.get("content-type") ?? "");
-
-    if (
-      scriptResponse.status >= 400 ||
-      returnedHtml ||
-      responseText !== "Registration received."
-    ) {
-      return NextResponse.json(
-        { error: "Google Apps Script did not confirm the registration." },
-        { status: 502 },
-      );
-    }
-
-    return NextResponse.json({ ok: true, message: "Registration submitted successfully." });
-  } catch (error) {
-    console.error("Registration forwarding failed:", error);
-
-    return NextResponse.json(
-      { error: "Registration could not be sent. Please try again." },
-      { status: 502 },
-    );
+    const responseText = await res.text();
+    const result = JSON.parse(responseText) as { ok?: unknown };
+    if (!res.ok || result.ok !== true) throw new Error(`Apps Script response: ${res.status}`);
+    return NextResponse.json({ ok: true });
+  } catch {
+    return NextResponse.json({ error: "Could not save your registration. Please try again." }, { status: 502 });
   }
 }
