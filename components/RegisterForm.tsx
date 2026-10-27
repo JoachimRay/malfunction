@@ -102,13 +102,6 @@ export default function RegisterForm() {
       <p className="form__hint">Teams have {TEAM_SIZE.min} to {TEAM_SIZE.max} members, including the leader.</p>
 
       <h3 className="form__sub">Other details</h3>
-      <div className="form__pair">
-        <div className="field">
-          <label htmlFor="shirtSize">T-shirt size (all members)</label>
-          <input id="shirtSize" name="shirtSize" placeholder="e.g. S, M, L, XL" />
-        </div>
-        <Field id="dietary" label="Dietary restrictions" placeholder="Optional" />
-      </div>
       <Field id="mentor" label="Mentor or adviser (optional)" placeholder="Name and email" />
 
       {/* Honeypot: hidden from people, bots tend to fill it */}
