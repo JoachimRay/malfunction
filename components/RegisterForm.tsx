@@ -76,17 +76,20 @@ export default function RegisterForm() {
       viewport={{ once: false, amount: 0.15 }}
       transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
     >
-      <h3 className="form__sub">Team</h3>
+      <h3 className="form__sub">Your team</h3>
+      <p className="form__hint">Choose a team name and tell us which school or organization you’re representing. Teams must have {TEAM_SIZE.min}–{TEAM_SIZE.max} people, including the leader.</p>
       <div className="form__pair">
         <Field id="team_name" label="Team name" required />
         <Field id="organization_name" label="School or organization" required />
       </div>
 
       <h3 className="form__sub">Team leader</h3>
+      <p className="form__hint">The leader is the main contact for event updates and should be ready to coordinate the team.</p>
       <Field id="leader_name" label="Full name" autoComplete="name" required />
       <Field id="leader_email" label="Email" type="email" autoComplete="email" required />
 
-      <h3 className="form__sub">Team members</h3>
+      <h3 className="form__sub">Add your teammates</h3>
+      <p className="form__hint">Enter a working email address for every teammate so organizers can reach your full team.</p>
       <AnimatePresence initial={false} mode="popLayout">
       {members.map((member, index) => (
         <motion.fieldset
@@ -120,14 +123,16 @@ export default function RegisterForm() {
       {members.length < maxRows && (
         <motion.button type="button" className="btn btn--outline" onClick={addMember} whileHover={reduceMotion ? undefined : { y: -2 }} whileTap={reduceMotion ? undefined : { scale: 0.97 }}>+ Add another member</motion.button>
       )}
-      <p className="form__hint">Teams have {TEAM_SIZE.min} to {TEAM_SIZE.max} members, including the leader.</p>
+      <p className="form__hint">Add {TEAM_SIZE.min - 1}–{TEAM_SIZE.max - 1} teammates. The leader counts toward your team size.</p>
 
       <h3 className="form__sub">Project</h3>
       <div className="field">
         <label htmlFor="project_idea">What do you plan to build?</label>
+        <p className="form__hint">Share the everyday problem you’ll make worse, how your idea might work, and whether you expect to use AI. A rough idea is fine; you can refine it at the event.</p>
         <motion.textarea id="project_idea" name="project_idea" required rows={4} whileFocus={reduceMotion ? undefined : { scale: 1.01, borderColor: "#fff" }} transition={{ type: "spring", stiffness: 360, damping: 24 }} />
       </div>
-      <Field id="mentor_name" label="Mentor or adviser (optional)" placeholder="Name and email" />
+      <Field id="mentor_name" label="Mentor or adviser (optional)" placeholder="Name and contact email" />
+      <p className="form__hint">If a teacher, adviser, or mentor is supporting your team, include their contact details here.</p>
 
       <div className="hp" aria-hidden="true">
         <label htmlFor="website">Website</label>
@@ -135,7 +140,7 @@ export default function RegisterForm() {
       </div>
       <div className="check">
         <input id="consent" name="consent" type="checkbox" required />
-        <label htmlFor="consent">I agree to the event rules and data privacy notice on behalf of my team.</label>
+        <label htmlFor="consent">I confirm my team’s details are accurate and agree to the event rules and data privacy notice on behalf of the team.</label>
       </div>
 
       <motion.button type="submit" className="btn btn--solid" disabled={status === "submitting"} whileHover={reduceMotion ? undefined : { y: -2 }} whileTap={reduceMotion ? undefined : { scale: 0.98 }}>

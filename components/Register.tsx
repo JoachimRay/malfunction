@@ -8,7 +8,7 @@ export default function Register() {
       <Reveal className="stack">
         <p className="eyebrow">03 / Register</p>
         <h2 className="h2">Register your team</h2>
-        <p className="lead">{EVENT.registerNote}</p>
+        <p className="lead register__intro">{EVENT.registerNote}</p>
       </Reveal>
       <RegisterForm />
     </section>
