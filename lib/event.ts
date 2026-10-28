@@ -25,10 +25,11 @@ export const TRACKS = [
 ];
 
 export const SCHEDULE = [
-  { time: "08:00", title: "REGISTRATION AND CHECK-IN" },
+  { time: "08:30", title: "REGISTRATION AND CHECK-IN" },
   { time: "09:00", title: "OPENING PROGRAM" },
   { time: "09:30", title: "HACKING BEGINS" },
   { time: "12:00", title: "LUNCH BREAK"},
+  { time: "13:00", title: "RESUME HACKING"},
   { time: "17:00", title: "JUDGING AND PRESENTATIONS" },
   { time: "18:00", title: "AWARDS AND CLOSING" },
 ];
