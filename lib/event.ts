@@ -9,7 +9,7 @@ export const EVENT = {
   venueOneLine: "iAcademy Cebu 5th Floor, Filinvest Cebu Cyberzone Tower 2",
   deadline: "18 November 2026",
   intro: "Malfunction: a hackathon where we solve problems nobody has and somehow make them worse.",
-  about: "Welcome to Malfunction, the hackathon where useful is overrated and the solution is probably worse than the problem. Your challenge: take an everyday problem like adjusting the volume, using a calculator, or finding your way and build the most hilariously unhelpful program you can. The more pointless, confusing, or spectacularly inconvenient, the better. Make us laugh, make us wonder why it exists, and maybe make us wish you’d just left the problem alone. The funniest program wins!",
+  about: "Welcome to Malfunction, the hackathon where useful is overrated and the solution is probably worse than the problem. Your challenge: take an everyday problem like adjusting the volume, using a calculator, or finding your way and build the most hilariously unhelpful program you can. The more pointless, confusing, or spectacularly inconvenient, the better. Make us laugh, make us wonder why it exists, and maybe make us wish you’d just left the problem alone. The funniest program wins! Hosted by yours truly, the iDE.A club.",
   registerNote: "Anyone can join, bring your own laptop",
   contactEmail: "ideacodingclub@iacademy.edu.ph",
   social: "Facebook: https://www.facebook.com/profile.php?id=61579580901883, Instagram: https://www.instagram.com/ide.a_cebu/, Tiktok: https://www.tiktok.com/@ide.a_cebu?lang=en",
