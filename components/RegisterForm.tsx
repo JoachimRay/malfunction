@@ -7,9 +7,9 @@ import { TEAM_SIZE } from "@/lib/event";
 type Member = { id: number; name: string; email: string };
 type Status = "idle" | "submitting" | "success" | "error";
 
-const minRows = TEAM_SIZE.min - 1;
+const minRows = 0;
 const maxRows = TEAM_SIZE.max - 1;
-const emptyMembers = () => Array.from({ length: minRows }, (_, i) => ({ id: i + 1, name: "", email: "" }));
+const emptyMembers = () => [] as Member[];
 
 export default function RegisterForm() {
   const [members, setMembers] = useState<Member[]>(emptyMembers);
@@ -77,7 +77,7 @@ export default function RegisterForm() {
       transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
     >
       <h3 className="form__sub">Your team</h3>
-      <p className="form__hint">Choose a team name and tell us which school or organization you’re representing. Teams must have {TEAM_SIZE.min}–{TEAM_SIZE.max} people, including the leader.</p>
+      <p className="form__hint">Choose a team name and tell us which school or organization you’re representing. You can register solo or with up to {TEAM_SIZE.max} people, including the leader.</p>
       <div className="form__pair">
         <Field id="team_name" label="Team name" required />
         <Field id="organization_name" label="School or organization" required />
@@ -105,11 +105,26 @@ export default function RegisterForm() {
           <div className="form__pair">
             <div className="field">
               <label htmlFor={`member-${member.id}-name`}>Full name</label>
-              <motion.input id={`member-${member.id}-name`} value={member.name} required onChange={(e) => updateMember(member.id, "name", e.target.value)} whileFocus={reduceMotion ? undefined : { scale: 1.015, borderColor: "#fff" }} transition={{ type: "spring", stiffness: 360, damping: 24 }} />
+              <motion.input
+                id={`member-${member.id}-name`}
+                value={member.name}
+                required
+                onChange={(e) => updateMember(member.id, "name", e.target.value)}
+                whileFocus={reduceMotion ? undefined : { scale: 1.015, borderColor: "#fff" }}
+                transition={{ type: "spring", stiffness: 360, damping: 24 }}
+              />
             </div>
             <div className="field">
               <label htmlFor={`member-${member.id}-email`}>Email</label>
-              <motion.input id={`member-${member.id}-email`} type="email" value={member.email} required onChange={(e) => updateMember(member.id, "email", e.target.value)} whileFocus={reduceMotion ? undefined : { scale: 1.015, borderColor: "#fff" }} transition={{ type: "spring", stiffness: 360, damping: 24 }} />
+              <motion.input
+                id={`member-${member.id}-email`}
+                type="email"
+                value={member.email}
+                required
+                onChange={(e) => updateMember(member.id, "email", e.target.value)}
+                whileFocus={reduceMotion ? undefined : { scale: 1.015, borderColor: "#fff" }}
+                transition={{ type: "spring", stiffness: 360, damping: 24 }}
+              />
             </div>
           </div>
           {members.length > minRows && (
@@ -123,7 +138,9 @@ export default function RegisterForm() {
       {members.length < maxRows && (
         <motion.button type="button" className="btn btn--outline" onClick={addMember} whileHover={reduceMotion ? undefined : { y: -2 }} whileTap={reduceMotion ? undefined : { scale: 0.97 }}>+ Add another member</motion.button>
       )}
-      <p className="form__hint">Add {TEAM_SIZE.min - 1}–{TEAM_SIZE.max - 1} teammates. The leader counts toward your team size.</p>
+      <p className="form__hint">
+        Register solo, or form a team of up to {TEAM_SIZE.max} people, including the leader.
+      </p>
 
       <h3 className="form__sub">Project</h3>
       <div className="field">

@@ -2,7 +2,9 @@ import { NextResponse } from "next/server";
 import { TEAM_SIZE } from "@/lib/event";
 
 const emailOk = (v: unknown) => typeof v === "string" && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
-const textOk = (v: unknown) => typeof v === "string" && v.trim().length > 0 && v.length < 200;
+const textOk = (v: unknown) => typeof v === "string" && v.trim().length > 0 && v.trim().length < 200;
+const projectIdeaOk = (v: unknown) =>
+  typeof v === "string" && v.trim().length > 0 && v.trim().length <= 5000;
 
 export async function POST(req: Request) {
   const body = await req.json().catch(() => null) as Record<string, unknown> | null;
@@ -18,10 +20,10 @@ export async function POST(req: Request) {
   const valid =
     body.registration_type === "team" &&
     textOk(body.team_name) && textOk(body.organization_name) &&
-    textOk(body.leader_name) && emailOk(body.leader_email) && textOk(body.project_idea) &&
+    textOk(body.leader_name) && emailOk(body.leader_email) && projectIdeaOk(body.project_idea) &&
     members.every((m) => !!m && typeof m === "object" &&
       textOk((m as { name?: unknown }).name) && emailOk((m as { email?: unknown }).email)) &&
-    total >= TEAM_SIZE.min && total <= TEAM_SIZE.max &&
+    total >= 1 && total <= TEAM_SIZE.max &&
     body.consent === true;
   if (!valid) return NextResponse.json({ error: "Please complete all required fields." }, { status: 400 });
 
