@@ -10,7 +10,7 @@ export const EVENT = {
   deadline: "18 November 2026",
   intro: "A one-day hackathon for delightfully unhelpful ideas. Take an everyday problem, make it wonderfully worse, and show us what you can build.",
   about: "Welcome to Malfunction, the hackathon where useful is overrated and the solution is probably worse than the problem. Your challenge: take an everyday problem like adjusting the volume, using a calculator, or finding your way and build the most hilariously unhelpful program you can. The more pointless, confusing, or spectacularly inconvenient, the better. Make us laugh, make us wonder why it exists, and maybe make us wish you’d just left the problem alone. Hosted by yours truly, the iDE.A club.",
-  registerNote: "Build a team of 3 to 5, including one team leader. Anyone interested in making a gloriously unhelpful program can join. Bring a laptop for your team’s build and register by 18 November 2026. Add each teammate’s name and email so the organizers can share event updates with the whole team. You do not need to arrive with a finished project. Bring an idea, some curiosity, and a willingness to make a small problem much worse.",
+  registerNote: "Students only. You can participate solo or as a team of 2 to 5. Anyone interested in making a gloriously unhelpful program can join. Bring a laptop for your build and register by 18 November 2026. Add each teammate’s name and email so the organizers can share event updates with the whole team. You do not need to arrive with a finished project. Bring an idea, some curiosity, and a willingness to make a small problem much worse.",
   contactEmail: "ideacodingclub@iacademy.edu.ph",
   socials: [
     { name: "Facebook", href: "https://www.facebook.com/profile.php?id=61579580901883" },
