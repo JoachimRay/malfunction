@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1350" viewBox="0 0 1080 1350" role="img" aria-labelledby="title desc">
+  <title id="title">Malfunction 2026 applications are closed</title>
+  <desc id="desc">A black and white, blueprint-inspired announcement for the Malfunction hackathon. Applications are closed. See you November 21.</desc>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#d9d9d9" stroke-opacity=".12" stroke-width="1"/>
+    </pattern>
+    <pattern id="fineGrid" width="8" height="8" patternUnits="userSpaceOnUse">
+      <path d="M8 0H0V8" fill="none" stroke="#d9d9d9" stroke-opacity=".08" stroke-width=".6"/>
+    </pattern>
+  </defs>
+  <rect width="1080" height="1350" fill="#050505"/>
+  <rect width="1080" height="1350" fill="url(#fineGrid)"/>
+  <rect width="1080" height="1350" fill="url(#grid)"/>
+  <g fill="#e2e2e2" font-family="Arial, Helvetica, sans-serif" font-weight="800">
+    <text x="54" y="110" font-size="77" letter-spacing="-3">MALFUNCTION</text>
+    <text x="57" y="171" font-size="48" letter-spacing="1">2026</text>
+  </g>
+  <path d="M54 202H1026" stroke="#e2e2e2" stroke-opacity=".7" stroke-width="2"/>
+  <g fill="none" stroke="#e2e2e2" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" opacity=".88" transform="translate(0 -40)">
+    <!-- A deliberately unhelpful machine, drafted like a technical blueprint. -->
+    <path d="M610 328 866 250 964 306 707 386Z"/>
+    <path d="M610 328v37l97 57V386M707 422l257-80v-36M866 250v37l98 55"/>
+    <path d="m667 335 198-60m-162 79 202-62m-121 70 198-62" stroke-opacity=".55"/>
+    <path d="M682 462c0-45 52-81 116-81s116 36 116 81v66c0 45-52 81-116 81s-116-36-116-81z"/>
+    <ellipse cx="798" cy="462" rx="116" ry="43"/>
+    <ellipse cx="798" cy="462" rx="73" ry="27" stroke-opacity=".8"/>
+    <ellipse cx="798" cy="462" rx="28" ry="11" stroke-opacity=".8"/>
+    <path d="M695 546c60-18 145-18 206 0M695 566c60-18 145-18 206 0" stroke-opacity=".62"/>
+    <!-- orbiting, disconnected cable -->
+    <path d="M662 562c-72 24-150 82-158 120-7 32 43 30 105 4 69-29 143-85 148-116 5-27-40-28-95-7Z"/>
+    <path d="M654 575c-69 29-115 65-119 88-3 16 31 8 75-10" stroke-width="2"/>
+    <!-- small monitor -->
+    <path d="M137 360h222v146H137zM151 374h194v116H151z"/>
+    <path d="M222 506v36m-43 0h129m-112 0-26 23h180l-26-23"/>
+    <path d="m183 455 43-43 28 24 46-48m-117 88 136-96" stroke-opacity=".75"/>
+    <!-- dimension marks -->
+    <path d="M498 304v-28m0 0-8 12m8-12 8 12M498 652v28m0 0-8-12m8 12 8-12" stroke-width="2"/>
+    <path d="M482 292h32M482 667h32" stroke-width="1.5" stroke-opacity=".7"/>
+  </g>
+  <g fill="#e2e2e2" font-family="Arial, Helvetica, sans-serif" font-weight="900" letter-spacing="-3">
+    <text x="54" y="766" font-size="104">APPLICATIONS</text>
+    <text x="48" y="879" font-size="132">CLOSED.</text>
+  </g>
+  <g font-family="Arial, Helvetica, sans-serif" fill="#d0d0d0">
+    <text x="58" y="937" font-size="23" font-weight="700" letter-spacing="4">THANKS FOR BRINGING YOUR IDEAS</text>
+    <text x="58" y="978" font-size="23" font-weight="700" letter-spacing="4">TO MAKE THE WORLD A LITTLE WORSE.</text>
+  </g>
+  <path d="M54 1020H1026" stroke="#e2e2e2" stroke-opacity=".7" stroke-width="2"/>
+  <g fill="#e2e2e2" font-family="Arial, Helvetica, sans-serif" font-weight="800">
+    <text x="55" y="1090" font-size="23" letter-spacing="4">NEXT STOP</text>
+    <text x="52" y="1162" font-size="61" letter-spacing="-1">SEE YOU THERE.</text>
+    <text x="56" y="1221" font-size="35" letter-spacing="1">21 NOVEMBER 2026</text>
+  </g>
+  <g fill="#bdbdbd" font-family="Arial, Helvetica, sans-serif">
+    <text x="58" y="1271" font-size="20">iACADEMY CEBU · FILINVEST CYBERZONE TOWER 2</text>
+    <text x="58" y="1322" font-size="26" font-weight="800" letter-spacing="1">{iDE.A}</text>
+    <text x="1024" y="1322" font-size="16" text-anchor="end" letter-spacing="3">IDEAS THAT SHOULD NOT WORK</text>
+  </g>
+</svg>

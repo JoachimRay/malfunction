@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { EVENT } from "@/lib/event";
 import Reveal from "./Reveal";
+import RegistrationClosedButton from "./RegistrationClosedButton";
 
 export default function Hero() {
   return (
@@ -24,7 +25,7 @@ export default function Hero() {
           </p>
           <p className="hero__intro">{EVENT.intro}</p>
           <div className="hero__cta">
-            <a href="#register" className="btn btn--solid">Register your team</a>
+            <RegistrationClosedButton className="btn btn--solid">Register your team</RegistrationClosedButton>
             <a href="#schedule" className="btn btn--outline">View schedule</a>
           </div>
         </div>

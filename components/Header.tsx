@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
+import RegistrationClosedButton from "./RegistrationClosedButton";
 
 export default function Header() {
   const reduceMotion = useReducedMotion();
@@ -15,7 +16,7 @@ export default function Header() {
         <nav className="nav" aria-label="Main">
           <motion.a href="#about" className="nav__link" whileHover={reduceMotion ? undefined : { y: -2 }}>About</motion.a>
           <motion.a href="#schedule" className="nav__link" whileHover={reduceMotion ? undefined : { y: -2 }}>Schedule</motion.a>
-          <motion.a href="#register" className="btn btn--solid btn--sm" whileHover={reduceMotion ? undefined : { y: -2 }} whileTap={reduceMotion ? undefined : { scale: 0.97 }}>Register</motion.a>
+          <RegistrationClosedButton className="btn btn--solid btn--sm">Register</RegistrationClosedButton>
         </nav>
       </motion.div>
     </header>
