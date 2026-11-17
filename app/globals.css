@@ -75,6 +75,12 @@ section[id] { scroll-margin-top: 72px; }
 .section { padding-top: 88px; padding-bottom: 88px; }
 .section--split { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 48px; }
 .section--top { align-items: start; }
+.register-closed { display: grid; grid-template-columns: 1.2fr .8fr; gap: 48px; align-items: center; border-top: 1.5px solid var(--ink); }
+.register-closed__copy { max-width: 680px; color: var(--mut); }
+.register-closed__stamp { min-height: 230px; padding: 28px; border: 1.5px solid var(--ink); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: linear-gradient(135deg, #080808, #000 60%); }
+.register-closed__mark { font-size: 38px; line-height: 1; }
+.register-closed__label { margin: 18px 0 8px; font-size: 14px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--mut); }
+.register-closed__date { margin: 0; font: 800 clamp(28px, 4vw, 44px)/1 var(--font-archivo), Arial, sans-serif; letter-spacing: -.03em; text-transform: uppercase; }
 .card { border: 1.5px solid var(--ink); background: #000; padding: 20px 24px; transition: transform .2s ease, border-color .2s ease, background-color .2s ease; }
 .card:hover { transform: translateX(4px); border-color: #fff; background-color: #090909; }
 .card--row { display: flex; gap: 20px; align-items: flex-start; }
@@ -121,6 +127,8 @@ section[id] { scroll-margin-top: 72px; }
   .hero__cta { flex-direction: column; }
   .hero__poster { max-width: 100%; }
   .section { padding-top: 56px; padding-bottom: 56px; }
+  .register-closed { grid-template-columns: 1fr; gap: 28px; }
+  .register-closed__stamp { min-height: 190px; }
   .schedule .section { padding-top: 48px; padding-bottom: 48px; }
   .rows__time { width: 100%; }
   .form { padding: 20px; }
