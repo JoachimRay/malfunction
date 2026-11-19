@@ -32,6 +32,7 @@ export default function Timer({
   showFullscreen = true,
 }: TimerProps) {
   const rootRef = useRef<HTMLDivElement>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const [target, setTarget] = useState(defaultTarget); // end time, like "17:00"
   const [phase, setPhase] = useState<Phase>("idle");
@@ -64,6 +65,29 @@ export default function Timer({
           ? Math.max(0, clockTarget(target, idleAt) - idleAt) // idle: frozen, does not tick
           : 0;
   const finished = ready && phase === "running" && remaining <= 0;
+
+  // Load the alarm sound once (file lives in public/samsung-alarm.mp3)
+  useEffect(() => {
+    const audio = new Audio("/samsung-alarm.mp3");
+    audio.loop = true; // keeps ringing until you reset
+    audioRef.current = audio;
+    return () => {
+      audio.pause();
+    };
+  }, []);
+
+  // Play the alarm when the timer finishes, stop it otherwise
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    if (finished) {
+      audio.currentTime = 0;
+      void audio.play().catch(() => {});
+    } else {
+      audio.pause();
+      audio.currentTime = 0;
+    }
+  }, [finished]);
 
   const toggle = () => {
     if (finished) {
